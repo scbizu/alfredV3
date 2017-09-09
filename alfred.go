@@ -25,6 +25,7 @@ func (al *AlfredMsg) Format() {
 	for _, output := range al.rawMsg {
 		item := new(AlfredJSONItem)
 		item.Title = output
+		item.Arg = output
 		// item.UID = ""
 		text := new(Text)
 		text.Copy = item.Title
