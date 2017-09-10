@@ -17,7 +17,7 @@ alfredV3 is a alfred3 go util lib ,it will use json as the data exchange rule.
 ## easy usage
 
 ```go
-res=[]string{"the","result","you","want" ,"to","show","in","the","bar"}
+res:=[]string{"the","result","you","want" ,"to","show","in","the","bar"}
 af := alfredV3.New(res)
 af.FormatAndPrint()
 ```
