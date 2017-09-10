@@ -116,7 +116,7 @@ func StoreData(cache *Cache) error {
 	db.Update(func(tx *bolt.Tx) error {
 		if cache.Expire == 0 {
 			//use default
-			cache.Expire = int64(defaultExpireTime)
+			cache.Expire = time.Now().Unix() + int64(defaultExpireTime)
 		}
 		b := tx.Bucket([]byte("expire"))
 		err := b.Put([]byte(cache.Input), []byte(strconv.FormatInt(cache.Expire, 10)))
