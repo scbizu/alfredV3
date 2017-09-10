@@ -60,6 +60,7 @@ func Error(err error) string {
 	item := new(AlfredJSONItem)
 	item.Title = err.Error()
 	item.UID = "error"
+	item.Valid = false
 	items.Items = append(items.Items, item)
 	res, err := json.Marshal(items)
 	if err != nil {
