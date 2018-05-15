@@ -5,26 +5,43 @@ import (
 	"fmt"
 )
 
-//AlfredMsg is the msg object
+// InputMsg defines the input message
+type InputMsg struct {
+	title    string
+	subTitle string
+	arg      string
+}
+
+// AlfredMsg is the msg object
 type AlfredMsg struct {
-	rawMsg []string
+	rawMsg []*InputMsg
 	output string
 }
 
-//New init an alfred instance
-func New(in []string) *AlfredMsg {
-	alfred := new(AlfredMsg)
-	alfred.rawMsg = in
-	return alfred
+// NewInputMsg init an alfred instance
+func NewInputMsg(title string, subTitle string, arg string) *InputMsg {
+	i := new(InputMsg)
+	i.title = title
+	i.subTitle = subTitle
+	i.arg = arg
+	return i
 }
 
-//Format convert the raw std output into Alfred-formatted output
+// NewAlfredMsg init the alfred msg obj
+func NewAlfredMsg(iMsg []*InputMsg) *AlfredMsg {
+	return &AlfredMsg{
+		rawMsg: iMsg,
+	}
+}
+
+// Format convert the raw std output into Alfred-formatted output
 func (al *AlfredMsg) Format() {
 	items := new(AlfredJSONFormat)
-	for _, output := range al.rawMsg {
+	for _, i := range al.rawMsg {
 		item := new(AlfredJSONItem)
-		item.Title = output
-		item.Arg = output
+		item.Title = i.title
+		item.SubTitle = i.subTitle
+		item.Arg = i.arg
 		// item.UID = ""
 		text := new(Text)
 		text.Copy = item.Title

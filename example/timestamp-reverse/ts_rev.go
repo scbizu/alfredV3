@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"strconv"
 	"time"
 
@@ -47,7 +48,9 @@ func main() {
 			}
 		}
 	}
-	ts := []string{strconv.FormatInt(t, 10)}
-	af := alfredV3.New(ts)
+	nowStr := strconv.FormatInt(t, 10)
+	nowStrFmt := fmt.Sprintf("%s => %s", *timeShortCut, nowStr)
+	ts := []*alfredV3.InputMsg{alfredV3.NewInputMsg(nowStrFmt, nowStrFmt, nowStr)}
+	af := alfredV3.NewAlfredMsg(ts)
 	af.FormatAndPrint()
 }

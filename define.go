@@ -1,8 +1,8 @@
 package alfredV3
 
-//AlfredJSONFormat defines the standard `Script Filter JSON Format`
-//more details are mentioned below:
-//https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
+// AlfredJSONFormat defines the standard `Script Filter JSON Format`
+// more details are mentioned below:
+// https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
 type AlfredJSONFormat struct {
 	Items []*AlfredJSONItem `json:"items"`
 }
