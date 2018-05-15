@@ -3,7 +3,6 @@ package alfredV3
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 )
 
 //AlfredMsg is the msg object
@@ -35,10 +34,7 @@ func (al *AlfredMsg) Format() {
 		items.Items = append(items.Items, item)
 	}
 
-	res, err := json.Marshal(items)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	res, _ := json.Marshal(items)
 	al.output = string(res)
 	return
 }
@@ -55,16 +51,15 @@ func (al *AlfredMsg) FormatAndPrint() {
 }
 
 //Error returns the std workflow error.
-func Error(err error) string {
-	items := new(AlfredJSONFormat)
+func Error(err error) {
+	f := new(AlfredJSONFormat)
 	item := new(AlfredJSONItem)
 	item.Title = err.Error()
 	item.UID = "error"
 	item.Valid = false
-	items.Items = append(items.Items, item)
-	res, err := json.Marshal(items)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	return string(res)
+	f.Items = append(f.Items, item)
+	res, _ := json.Marshal(f)
+	am := new(AlfredMsg)
+	am.output = string(res)
+	am.FormatAndPrint()
 }
