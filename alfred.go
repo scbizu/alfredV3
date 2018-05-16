@@ -73,7 +73,7 @@ func Error(err error) {
 	item := new(AlfredJSONItem)
 	item.Title = err.Error()
 	item.UID = "error"
-	item.Valid = false
+	item.Valid = true
 	f.Items = append(f.Items, item)
 	res, _ := json.Marshal(f)
 	am := new(AlfredMsg)
